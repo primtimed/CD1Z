@@ -13,6 +13,8 @@ public class PathFinding : MonoBehaviour
     public Transform[] wayPoint;
     int waypointIndex;
     public Vector3 target;
+    public bool bossNav;
+    public bool hasDecided;
 
     // Start is called before the first frame update
     void Start()
@@ -39,10 +41,35 @@ public class PathFinding : MonoBehaviour
     }
     void chooseWayPoint()
     {
-        waypointIndex++;
-        if(waypointIndex == wayPoint.Length)
+        //add descision time. 
+        if(bossNav == true)
         {
-            waypointIndex = 0;
+            waypointIndex = Random.Range(0, wayPoint.Length);
+            if (waypointIndex == wayPoint.Length)
+            {
+                waypointIndex = 0;
+            }
         }
+        else
+        {
+            hasDecided = false;
+            StartCoroutine(ChooseTime());
+            IEnumerator ChooseTime()
+            {
+                yield return new WaitForSeconds(0.2f);
+                hasDecided = true;
+
+                waypointIndex = Random.Range(0, wayPoint.Length);
+                if (waypointIndex == wayPoint.Length)
+                {
+                    waypointIndex = 0;
+                }
+            }
+            //add doubt time with coroutine
+
+        }
+
+
     }
+
 }
