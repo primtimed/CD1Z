@@ -7,6 +7,7 @@ using UnityEngine.InputSystem;
 
 public class Movement : MonoBehaviour
 {
+    public Animator _anime;
     public float _sens, _moveSpeed;
 
     private PlayerControlls _playerControlls;
@@ -68,14 +69,14 @@ public class Movement : MonoBehaviour
 
     public void Rotation()
     {
-        _rotateV2 = _look.ReadValue<Vector2>() * _sens;
+        _rotateV2 = _look.ReadValue<Vector2>();
 
         _x += _rotateV2.x;
         _y -= _rotateV2.y;
 
         _y = Mathf.Clamp(_y, -85, 85);
 
-        transform.localRotation = quaternion.Euler(0, _x, 0);
-        _back._cam.transform.localRotation = quaternion.Euler(_y, 0, 0);
+        transform.localRotation = quaternion.Euler(0, _x * _sens, 0);
+        _back._cam.transform.localRotation = quaternion.Euler(_y * _sens, 0, 0);
     }
 }
