@@ -12,7 +12,6 @@ public class PathFinding : MonoBehaviour
 
     public Transform[] wayPoint;
     int waypointIndex;
-    public Vector3 target;
 
     // Start is called before the first frame update
     void Start()
@@ -24,7 +23,7 @@ public class PathFinding : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Vector3.Distance(transform.position, target) < 2)
+        if(Vector3.Distance(transform.position, wayPoint[waypointIndex].transform.position) < 2)
         {
             chooseWayPoint();
             UpdateDestination();
@@ -34,8 +33,7 @@ public class PathFinding : MonoBehaviour
     void UpdateDestination()
     {
         //choose with randomizer wich waypoint to go to
-        target = wayPoint[waypointIndex].transform.position;
-        agent007.SetDestination(target); 
+        agent007.SetDestination(wayPoint[waypointIndex].transform.position); 
     }
     void chooseWayPoint()
     {
