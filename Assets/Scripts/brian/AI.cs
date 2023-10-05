@@ -26,6 +26,7 @@ public class AI : MonoBehaviour
     {
         if(_health < 0)
         {
+            GameObject.Find("Keep").GetComponent<Wave>().Spawn();
             Destroy(gameObject);
         }
 

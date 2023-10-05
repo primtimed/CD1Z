@@ -32,7 +32,7 @@ public class BaseGun : MonoBehaviour
     private WeaponShake shake;
     public GameObject hitO;
 
-
+    public GameObject _ParticalLoc;
     private void Awake()
     {
         extra = new Extra();
@@ -58,8 +58,8 @@ public class BaseGun : MonoBehaviour
 
         extra.timer = 0;
 
-        //shoot.Play();
-        Instantiate(flash, GameObject.Find("Flash").transform.position, Quaternion.identity);
+        GameObject _flash = Instantiate(flash, GameObject.Find("Flash").transform.position, Quaternion.identity);
+        _flash.transform.parent = _ParticalLoc.transform;
 
 
 
@@ -79,7 +79,8 @@ public class BaseGun : MonoBehaviour
         RaycastHit hit;
         if(Physics.Raycast(extra.cam.transform.position, extra.bloom, out hit, maxDistance))
         {
-            Instantiate(hitO, hit.point, hit.transform.rotation);
+            GameObject _hit = Instantiate(hitO, hit.point, hit.transform.rotation);
+            _hit.transform.parent = _ParticalLoc.transform;
 
             if (hit.transform.tag == "Enemy")
             {
