@@ -33,6 +33,7 @@ public class BaseGun : MonoBehaviour
     public GameObject hitO;
 
     public GameObject _ParticalLoc;
+    public GameObject _ShootTrail;
     private void Awake()
     {
         extra = new Extra();
