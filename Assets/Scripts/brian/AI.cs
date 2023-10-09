@@ -30,7 +30,7 @@ public class AI : MonoBehaviour
             Destroy(gameObject);
         }
 
-        if (Vector3.Distance(transform.position, _loc[_index].transform.position) < 2)
+        if (Vector3.Distance(transform.position, _loc[_index].transform.position) < .7f)
         {
             NewLocation();
         }
